@@ -1,0 +1,6 @@
+.git
+.yarn/cache
+.yarn/install-state.gz
+
+plugins
+*.local.yaml

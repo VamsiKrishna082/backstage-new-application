@@ -1,0 +1,27 @@
+# replicaCount: 1
+
+image:
+  repository: us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage
+  tag: ""
+  pullPolicy: Always
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 7007
+
+  tls:
+    enabled: "true"
+    secretName: backstage-tensure-secret
+    issuer: backstage-tensure-issuer
+
+cert:
+  issuer: backstage-tensure-issuer
+  secretName: backstage-tensure-secret
+  acmeServer: https://acme-v02.api.letsencrypt.org/directory
+
+  # Optional: Set only if you're creating the TLS secret manually
+  tlsCrt: ""
+  tlsKey: ""
+
+resources: {}

@@ -1,0 +1,3 @@
+"use strict";(()=>{(self.webpackChunkapp=self.webpackChunkapp||[]).push([[2086],{22086:(P,n,t)=>{t.r(n),t.d(n,{CatalogEntityPage:()=>R});var a=t(31085),o=t(18690),d=t(16400),u=t(76888),r=t(18139),E=t(24453),A=t(20987),c=t(30043),h=t(14041),p=t(28966);const C=()=>{const{kind:v,namespace:m,name:s}=(0,u.K)(A.s),e=(0,o.Zp)(),f=(0,r.gf)(E.m),g=(0,r.gf)(c.v),{value:i,error:l,loading:y,retry:j}=(0,p.A)(()=>g.getEntityByRef({kind:v,namespace:m,name:s}),[g,v,m,s]);return(0,h.useEffect)(()=>{s||(f.post(new Error("No name provided!")),e("/"))},[f,e,l,y,i,s]),{entity:i,loading:y,error:l,refresh:j}};function R(){return(0,a.jsx)(d.T7,{...C(),children:(0,a.jsx)(o.sv,{})})}}}]);})();
+
+//# sourceMappingURL=2086.ead6c5c7.chunk.js.map

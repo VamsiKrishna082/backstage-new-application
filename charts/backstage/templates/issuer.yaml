@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: {{ .Values.cert.issuer }}
+spec:
+  acme:
+    server: {{ .Values.cert.acmeServer }}
+    email: {{ .Values.cert.email }}
+    privateKeySecretRef:
+      name: {{ .Values.cert.issuer }}
+    solvers:
+      - dns01:
+          cloudDNS:
+            project: {{ .Values.cert.gcpProject }}

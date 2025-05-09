@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "backstage.fullname" . }}-ingress
+  annotations:
+    kubernetes.io/ingress.class: {{ .Values.ingress.class }}
+    kubernetes.io/ingress.allow-http: "true"
+    external-dns.alpha.kubernetes.io/hostname: {{ .Values.ingress.host }}
+    cert-manager.io/cluster-issuer: {{ .Values.cert.issuer }}
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: {{ .Values.cert.secretName }}
+  rules:
+    - host: {{ .Values.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ include "backstage.fullname" . }}-service
+                port:
+                  number: 80

@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "backstage.fullname" . }}-deployment
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "backstage.name" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "backstage.name" . }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}-node
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: BACKSTAGE_DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.db.name }}
+                  key: {{ .Values.secrets.db.key }}
+            - name: BACKSTAGE_DB_CLOUD_SQL_IP
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.sql.name }}
+                  key: {{ .Values.secrets.sql.key }}
+            - name: BACKSTAGE_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.loginid.name }}
+                  key: {{ .Values.secrets.loginid.key }}
+            - name: BACKSTAGE_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.loginsecret.name }}
+                  key: {{ .Values.secrets.loginsecret.key }}
+            - name: BACKSTAGE_BACKEND_AUTH
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.backendauth.name }}
+                  key: {{ .Values.secrets.backendauth.key }}
+            - name: BACKSTAGE_GITHUB_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github.name }}
+                  key: {{ .Values.secrets.github.key }}

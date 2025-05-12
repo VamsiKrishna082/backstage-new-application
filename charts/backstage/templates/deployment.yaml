@@ -12,6 +12,7 @@ spec:
   template:
     metadata:
       labels:
+        backstage.io/kubernetes-id: {{ include "backstage.fullname" . }}
         app: {{ include "backstage.name" . }}
     spec:
       containers:

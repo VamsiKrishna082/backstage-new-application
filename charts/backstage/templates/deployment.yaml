@@ -1,6 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  labels:
+    backstage.io/kubernetes-id: {{ include "backstage.fullname" . }}
   name: {{ include "backstage.fullname" . }}-deployment
 spec:
   replicas: {{ .Values.replicaCount }}

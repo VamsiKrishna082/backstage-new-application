@@ -148,14 +148,14 @@ backend:
 integrations:
   github:
     - host: github.com
-      
+   
 
 auth:
   environment: production
   providers:
     google:
       production:
-        
+     
         ## uncomment to set lifespan of user session
         # sessionDuration: { hours: 24 } # supports `ms` library format (e.g. '24h', '2 days'), ISO duration, "human duration" as used in code
         signIn:
@@ -163,13 +163,37 @@ auth:
             # See https://backstage.io/docs/auth/google/provider#resolvers for more resolvers
             - resolver: emailMatchingUserEntityProfileEmail
 
+# proxy:
+#   ### Example for how to add a proxy endpoint for the frontend.
+#   ### A typical reason to do this is to handle HTTPS and CORS for internal services.
+#   # endpoints:
+#   #   '/test':
+#   #     target: 'https://example.com'
+#   #     changeOrigin: true
+
 proxy:
-  ### Example for how to add a proxy endpoint for the frontend.
-  ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-  # endpoints:
-  #   '/test':
-  #     target: 'https://example.com'
-  #     changeOrigin: true
+  '/argocd/api':
+    target: https://argocd.ioinfo.shop/api/v1/
+    changeOrigin: true
+    # only if your argocd api has self-signed cert
+    secure: true
+    headers:
+      Cookie:
+        $env: ARGOCD_AUTH_TOKEN
+  '/grafana/api':
+    # May be a public or an internal DNS
+    target: https://grafana.tensure.cloud
+    headers:
+     
+
+grafana:
+  # Publicly accessible domain
+  domain: https://grafana.tensure.cloud
+
+  # Is unified alerting enabled in Grafana?
+  # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
+  # Optional. Default: false
+  unifiedAlerting: false
 
 # Reference documentation http://backstage.io/docs/features/techdocs/configuration
 # Note: After experimenting with basic setup, use CI/CD to generate docs

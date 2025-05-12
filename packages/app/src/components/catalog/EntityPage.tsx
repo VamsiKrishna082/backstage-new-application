@@ -59,6 +59,16 @@ import {
   isKubernetesAvailable,
 } from '@backstage/plugin-kubernetes';
 
+import {
+  EntityArgoCDOverviewCard,
+  isArgocdAvailable
+} from '@roadiehq/backstage-plugin-argo-cd';
+
+import { EntityGrafanaDashboardsCard } from '@backstage-community/plugin-grafana';
+
+// import { EntityArgoCDHistoryCard } from '@roadiehq/backstage-plugin-argo-cd';
+
+
 const techdocsContent = (
   <EntityTechdocsContent>
     <TechDocsAddons>
@@ -135,12 +145,36 @@ const overviewContent = (
       <EntityCatalogGraphCard variant="gridItem" height={400} />
     </Grid>
 
+    <EntitySwitch>
+      <EntitySwitch.Case if={e => Boolean(isArgocdAvailable(e))}>
+        <Grid item md={12} xs={12}>
+          <EntityArgoCDOverviewCard />
+        </Grid>
+      </EntitySwitch.Case>
+    </EntitySwitch>
+
+    
+
+    <Grid item md={12} xs={12}>
+      {/* Grafana alert card start */}
+      <EntityGrafanaDashboardsCard />
+      {/* Grafana alert card end */}
+    </Grid>
+
     <Grid item md={4} xs={12}>
       <EntityLinksCard />
     </Grid>
     <Grid item md={8} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
+
+    
+
+    {/* <Grid item md={6}>
+      <EntityArgoCDHistoryCard />
+    </Grid> */}
+
+
   </Grid>
 );
 
@@ -158,13 +192,13 @@ const serviceEntityPage = (
       <EntityKubernetesContent refreshIntervalMs={10000} />
     </EntityLayout.Route>
 
-    <EntityLayout.Route
+    {/* <EntityLayout.Route
       path="/kubernetes"
       title="Kubernetes"
       if={isKubernetesAvailable}
     >
       <EntityKubernetesContent />
-    </EntityLayout.Route>
+    </EntityLayout.Route> */}
 
     <EntityLayout.Route path="/api" title="API">
       <Grid container spacing={3} alignItems="stretch">

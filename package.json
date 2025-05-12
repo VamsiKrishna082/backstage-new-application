@@ -50,5 +50,9 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@4.4.1"
+  "packageManager": "yarn@4.4.1",
+  "dependencies": {
+    "@backstage-community/plugin-grafana": "^0.4.0",
+    "@roadiehq/backstage-plugin-argo-cd": "^2.8.7"
+  }
 }

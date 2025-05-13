@@ -556,6 +556,137 @@
       "packageName": "@backstage/plugin-techdocs"
     },
     {
+      "path": "../../node_modules/@headlamp-k8s/backstage-plugin-headlamp/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "headlamp": {
+            "description": "Configurations for the Headlamp plugin",
+            "type": "object",
+            "properties": {
+              "url": {
+                "description": "The url of the Headlamp. Defaults to `window.location.protocol}//${window.location.hostname}:4466`.",
+                "visibility": "frontend",
+                "type": "string"
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@headlamp-k8s/backstage-plugin-headlamp"
+    },
+    {
+      "path": "../../node_modules/@backstage-community/plugin-grafana/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "grafana": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "description": "Domain used by users to access Grafana web UI.\nExample: https://monitoring.eu.my-company.com/",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "proxyPath": {
+                "description": "Path to use for requests via the proxy, defaults to /grafana/api",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "unifiedAlerting": {
+                "description": "Is Grafana using unified alerting?",
+                "visibility": "frontend",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        "required": [
+          "grafana"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage-community/plugin-grafana"
+    },
+    {
+      "path": "../../node_modules/@roadiehq/backstage-plugin-argo-cd/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "argocd": {
+            "description": "Optional configurations for the ArgoCD plugin",
+            "type": "object",
+            "properties": {
+              "baseUrl": {
+                "description": "The base url of the ArgoCD instance.",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "namespacedApps": {
+                "description": "Support for the ArgoCD beta feature \"Applications in any namespace\"",
+                "visibility": "frontend",
+                "type": "boolean"
+              },
+              "revisionsToLoad": {
+                "description": "The number of revisions to load per application in the history table.",
+                "visibility": "frontend",
+                "type": "number"
+              },
+              "appLocatorMethods": {
+                "description": "The base url of the ArgoCD instance.",
+                "visibility": "frontend",
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "description": "The base url of the ArgoCD instance.",
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "instances": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "visibility": "frontend",
+                            "type": "string"
+                          },
+                          "frontendUrl": {
+                            "visibility": "frontend",
+                            "type": "string"
+                          },
+                          "url": {
+                            "visibility": "frontend",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "url"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "instances",
+                    "type"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@roadiehq/backstage-plugin-argo-cd"
+    },
+    {
       "path": "../../node_modules/@backstage/integration/config.d.ts",
       "value": {
         "type": "object",
@@ -1534,6 +1665,98 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/frontend-app-api"
+    },
+    {
+      "path": "../../node_modules/@headlamp-k8s/backstage-plugin-headlamp/node_modules/@backstage/core-components/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "autologout": {
+                "description": "Autologout feature configuration",
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "description": "Enable or disable the autologout feature",
+                    "visibility": "frontend",
+                    "type": "boolean"
+                  },
+                  "idleTimeoutMinutes": {
+                    "description": "Number of minutes after which the inactive user is logged out automatically.\nDefault is 60 minutes (1 hour)",
+                    "visibility": "frontend",
+                    "type": "number"
+                  },
+                  "promptBeforeIdleSeconds": {
+                    "description": "Number of seconds before the idle timeout where the user will be asked if it's still active.\nA dialog will be shown.\nDefault is 10 seconds.\nSet to 0 seconds to disable the prompt.",
+                    "visibility": "frontend",
+                    "type": "number"
+                  },
+                  "useWorkerTimers": {
+                    "description": "Enable/disable the usage of worker thread timers instead of main thread timers.\nDefault is true.\nIf you experience some browser incompatibility, you may try to set this to false.",
+                    "visibility": "frontend",
+                    "type": "boolean"
+                  },
+                  "logoutIfDisconnected": {
+                    "description": "Enable/disable the automatic logout also on users that are logged in but with no Backstage tabs open.\nDefault is true.",
+                    "visibility": "frontend",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/core-components"
+    },
+    {
+      "path": "../../node_modules/@backstage-community/plugin-grafana/node_modules/@backstage/core-components/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "autologout": {
+                "description": "Autologout feature configuration",
+                "type": "object",
+                "properties": {
+                  "enabled": {
+                    "description": "Enable or disable the autologout feature",
+                    "visibility": "frontend",
+                    "type": "boolean"
+                  },
+                  "idleTimeoutMinutes": {
+                    "description": "Number of minutes after which the inactive user is logged out automatically.\nDefault is 60 minutes (1 hour)",
+                    "visibility": "frontend",
+                    "type": "number"
+                  },
+                  "promptBeforeIdleSeconds": {
+                    "description": "Number of seconds before the idle timeout where the user will be asked if it's still active.\nA dialog will be shown.\nDefault is 10 seconds.\nSet to 0 seconds to disable the prompt.",
+                    "visibility": "frontend",
+                    "type": "number"
+                  },
+                  "useWorkerTimers": {
+                    "description": "Enable/disable the usage of worker thread timers instead of main thread timers.\nDefault is true.\nIf you experience some browser incompatibility, you may try to set this to false.",
+                    "visibility": "frontend",
+                    "type": "boolean"
+                  },
+                  "logoutIfDisconnected": {
+                    "description": "Enable/disable the automatic logout also on users that are logged in but with no Backstage tabs open.\nDefault is true.",
+                    "visibility": "frontend",
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/core-components"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-atlassian-provider/config.d.ts",

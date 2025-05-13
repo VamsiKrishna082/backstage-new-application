@@ -103,8 +103,7 @@ catalog:
     - type: url
       target: https://github.com/VamsiKrishna082/backstage-templates/blob/main/template.yaml
 
-
-    useUrlReadersSearch: true
+  useUrlReadersSearch: true
 
 kubernetes:
   frontend:

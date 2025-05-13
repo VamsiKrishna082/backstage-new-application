@@ -28,6 +28,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import { MyGroupsSidebarItem } from '@backstage/plugin-org';
 import GroupIcon from '@material-ui/icons/People';
 
+import { HeadlampIcon } from '@headlamp-k8s/backstage-plugin-headlamp';  
+
 const useSidebarLogoStyles = makeStyles({
   root: {
     width: sidebarConfig.drawerWidthClosed,
@@ -75,6 +77,7 @@ export const Root = ({ children }: PropsWithChildren<{}>) => (
         <SidebarItem icon={ExtensionIcon} to="api-docs" text="APIs" />
         <SidebarItem icon={LibraryBooks} to="docs" text="Docs" />
         <SidebarItem icon={CreateComponentIcon} to="create" text="Create..." />
+        <SidebarItem icon={HeadlampIcon} to="headlamp" text="Headlamp" />
         {/* End global nav */}
         <SidebarDivider />
         <SidebarScrollWrapper>

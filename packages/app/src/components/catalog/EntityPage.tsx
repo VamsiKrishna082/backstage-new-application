@@ -64,6 +64,11 @@ import {
   isArgocdAvailable
 } from '@roadiehq/backstage-plugin-argo-cd';
 
+import {
+  EntityGithubActionsContent,
+  isGithubActionsAvailable,
+} from '@backstage-community/plugin-github-actions';
+
 import { EntityGrafanaDashboardsCard } from '@backstage-community/plugin-grafana';
 
 // import { EntityArgoCDHistoryCard } from '@roadiehq/backstage-plugin-argo-cd';
@@ -161,10 +166,10 @@ const overviewContent = (
       {/* Grafana alert card end */}
     </Grid>
 
-    <Grid item md={4} xs={12}>
+    <Grid item md={6} xs={12}>
       <EntityLinksCard />
     </Grid>
-    <Grid item md={8} xs={12}>
+    <Grid item md={6} xs={12}>
       <EntityHasSubcomponentsCard variant="gridItem" />
     </Grid>
 
@@ -184,8 +189,16 @@ const serviceEntityPage = (
       {overviewContent}
     </EntityLayout.Route>
 
-    <EntityLayout.Route path="/ci-cd" title="CI/CD">
+    {/* <EntityLayout.Route path="/ci-cd" title="CI/CD">
       {cicdContent}
+    </EntityLayout.Route> */}
+
+    {/* <EntityLayout.Route path="/CI/CD" title="CI/CD">
+      <EntityGithubActionsContent />
+    </EntityLayout.Route> */}
+
+    <EntityLayout.Route path="/github-actions" title="GitHub Actions" if={isGithubActionsAvailable}>
+      <EntityGithubActionsContent />
     </EntityLayout.Route>
 
     <EntityLayout.Route path="/kubernetes" title="Kubernetes">

@@ -18,7 +18,11 @@ backend.add(import('@backstage/plugin-techdocs-backend'));
 // added ones
 backend.add(import('@backstage/plugin-scaffolder-backend-module-github'));
 backend.add(import('@backstage/plugin-kubernetes-backend'));
+backend.add(import('@headlamp-k8s/backstage-plugin-headlamp-backend'));
 backend.add(import('@backstage/plugin-auth-backend-module-google-provider'));
+backend.add(import('@backstage/plugin-auth-backend-module-github-provider'));
+
+// backend.add(import('@backstage/plugin-catalog-backend-module-gcp'));
 
 // auth plugin
 backend.add(import('@backstage/plugin-auth-backend'));
@@ -60,3 +64,4 @@ backend.add(import('@backstage/plugin-search-backend-module-techdocs'));
 // backend.add(import('@backstage/plugin-kubernetes-backend'));
 
 backend.start();
+

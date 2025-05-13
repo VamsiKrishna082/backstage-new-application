@@ -50,3 +50,44 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.secrets.github.name }}
                   key: {{ .Values.secrets.github.key }}
+            - name: BACKSTAGE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.backstage_host.name }}
+                  key: {{ .Values.secrets.backstage_host.key }}
+            - name: BACKSTAGE_GITHUB_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_client_id.name }}
+                  key: {{ .Values.secrets.github_client_id.key }}
+            - name: BACKSTAGE_GITHUB_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_client_secret.name }}
+                  key: {{ .Values.secrets.github_client_secret.key }}
+            - name: ARGO_CD_HOST_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.argocd_host.name }}
+                  key: {{ .Values.secrets.argocd_host.key }}
+            - name: ARGOCD_AUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.argocd_token.name }}
+                  key: {{ .Values.secrets.argocd_token.key }}
+            - name: GRAFANA_HOST_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.grafana_host.name }}
+                  key: {{ .Values.secrets.grafana_host.key }}
+            - name: GRAFANA_BEARER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.grafana_token.name }}
+                  key: {{ .Values.secrets.grafana_token.key }}
+            - name: TECHDOCS_GCS_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.techdocs_gcs_bucket.name }}
+                  key: {{ .Values.secrets.techdocs_gcs_bucket.key }}
+            

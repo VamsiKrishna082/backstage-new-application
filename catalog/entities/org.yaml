@@ -1,0 +1,56 @@
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Tensure
+  description: Tensure Organization
+spec:
+  type: organization
+  picture: https://storage.googleapis.com/backstage-images-tensure/tensureio_logo.jpeg
+  profile:
+    email: support@tensure.io
+  children: [Cloud]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Cloud
+  description: Cloud Team
+spec:
+  type: team
+  profile:
+    email: cloud@tensure.io
+  parent: Tensure
+  children: []
+  members: [vamsi,joe]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: Software
+spec:
+  type: team
+  profile:
+    email: software@tensure.io
+  parent: Tensure
+  children: []
+  members: [vamsi]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: vamsi
+spec:
+  profile:
+    displayName: Vamsi krishna
+    email: vamsi.krishna@tensure.io
+  memberOf: [cloud]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: Joe
+spec:
+  profile:
+    displayName: Joe Kerstanoff
+    email: joe@tensure.io
+  memberOf: [cloud]

@@ -1,161 +1,53 @@
-# app:
-#   title: Tensure Backstage App
-#   listen:
-#     host: 0.0.0.0
-#     port: 7007
-#   baseUrl: https://backstage-new.ioinfo.shop
-
-# organization:
-#   name: Tensure
-
-# backend:
-#   auth:
-#     keys:
-#       - secret: ${BACKSTAGE_BACKEND_AUTH}
-#   baseUrl: https://backstage-new.ioinfo.shop
-#   listen:
-#     port: 7007
-#     host: 0.0.0.0
-
-#   csp:
-#     connect-src: ["'self'", 'http:', 'https:']
-
-#   cors:
-#     origin: https://backstage-new.ioinfo.shop
-#     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
-#     credentials: true
-
-#   database:
-#     client: pg
-#     connection:
-#       host: ${BACKSTAGE_DB_CLOUD_SQL_IP}
-#       port: 5432
-#       user: backstage
-#       password: ${BACKSTAGE_DB_PASSWORD}
-
-# integrations:
-#   github:
-#     - host: github.com
-#       token: ${BACKSTAGE_GITHUB_KEY}
-
-# auth:
-#   environment: production
-#   providers:
-#     google:
-#       production:
-#         clientId: ${BACKSTAGE_CLIENT_ID}
-#         clientSecret: ${BACKSTAGE_CLIENT_SECRET}
-#         ## uncomment to set lifespan of user session
-#         # sessionDuration: { hours: 24 } # supports `ms` library format (e.g. '24h', '2 days'), ISO duration, "human duration" as used in code
-#         signIn:
-#           resolvers:
-#             # See https://backstage.io/docs/auth/google/provider#resolvers for more resolvers
-#             - resolver: emailMatchingUserEntityProfileEmail
-
-# proxy:
-#   ### Example for how to add a proxy endpoint for the frontend.
-#   ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-#   # endpoints:
-#   #   '/test':
-#   #     target: 'https://example.com'
-#   #     changeOrigin: true
-
-# # Reference documentation http://backstage.io/docs/features/techdocs/configuration
-# # Note: After experimenting with basic setup, use CI/CD to generate docs
-# # and an external cloud storage when deploying TechDocs for production use-case.
-# # https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
-# techdocs:
-#   builder: 'local' # Alternatives - 'external'
-#   generator:
-#     runIn: 'local' # Alternatives - 'local'
-#   publisher:
-#     type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
-
-
-# scaffolder:
-#   # see https://backstage.io/docs/features/software-templates/configuration for software template options
-
-# catalog:
-#   import:
-#     entityFilename: catalog-info.yaml
-#     pullRequestBranchName: backstage-integration
-#   rules:
-#     - allow: [Template, User, Group, Component, System, API, Resource, Location]
-#   locations:
-#     - type: file
-#       target: /app/entities/users.yaml
-
-#     - type: file
-#       target: /app/entities/groups.yaml
-
-#     ## Uncomment these lines to add more example data
-#     # - type: url
-#     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
-
-#     ## Uncomment these lines to add an example org
-#     # - type: url
-#     #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
-#     #   rules:
-#     #     - allow: [User, Group]
-#   # Experimental: Always use the search method in UrlReaderProcessor.
-#   # New adopters are encouraged to enable it as this behavior will be the default in a future release.
-#   useUrlReadersSearch: true
-
-# # kubernetes:
-#   # see https://backstage.io/docs/features/kubernetes/configuration for kubernetes configuration options
-
-# # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
-# permission:
-#   # setting this to `false` will disable permissions
-#   enabled: true
-
-
 app:
   title: Tensure Backstage App
-  # listen:
-  #   host: 0.0.0.0
-  #   # port: 7007
-  baseUrl: http://localhost:3000
-
+  listen:
+    host: 0.0.0.0
+    port: 7007
+  baseUrl: ${BACKSTAGE_HOST}
 organization:
   name: Tensure
 
 backend:
   auth:
     keys:
-      - secret: BCNHCu7pLQ91SKaNwhSa0zEODmSlIKve
-  baseUrl: http://localhost:7007
+      - secret: ${BACKSTAGE_BACKEND_AUTH}
+  baseUrl: ${BACKSTAGE_HOST}
   listen:
     port: 7007
-    host: 127.0.0.1
+    host: 0.0.0.0
 
   csp:
     connect-src: ["'self'", 'http:', 'https:']
 
   cors:
-    origin: http://localhost:3000
+    origin: ${BACKSTAGE_HOST}
     methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
     credentials: true
 
   database:
     client: pg
     connection:
-      host: 35.225.63.118
+      host: ${BACKSTAGE_DB_CLOUD_SQL_IP}
       port: 5432
       user: backstage
-      password: backstage
+      password: ${BACKSTAGE_DB_PASSWORD}
 
 integrations:
   github:
     - host: github.com
-   
+      token: ${BACKSTAGE_GITHUB_KEY}
 
 auth:
   environment: production
   providers:
+    github:
+      production:
+        clientId: ${BACKSTAGE_GITHUB_CLIENT_ID}
+        clientSecret: ${BACKSTAGE_GITHUB_CLIENT_SECRET}
     google:
       production:
-     
+        clientId: ${BACKSTAGE_CLIENT_ID}
+        clientSecret: ${BACKSTAGE_CLIENT_SECRET}
         ## uncomment to set lifespan of user session
         # sessionDuration: { hours: 24 } # supports `ms` library format (e.g. '24h', '2 days'), ISO duration, "human duration" as used in code
         signIn:
@@ -163,52 +55,37 @@ auth:
             # See https://backstage.io/docs/auth/google/provider#resolvers for more resolvers
             - resolver: emailMatchingUserEntityProfileEmail
 
-# proxy:
-#   ### Example for how to add a proxy endpoint for the frontend.
-#   ### A typical reason to do this is to handle HTTPS and CORS for internal services.
-#   # endpoints:
-#   #   '/test':
-#   #     target: 'https://example.com'
-#   #     changeOrigin: true
-
 proxy:
   '/argocd/api':
-    target: https://argocd.ioinfo.shop/api/v1/
+    target: https://${ARGO_CD_HOST_NAME}/api/v1/
     changeOrigin: true
     # only if your argocd api has self-signed cert
     secure: true
     headers:
       Cookie:
-        $env: ARGOCD_AUTH_TOKEN
+        $env: ${ARGOCD_AUTH_TOKEN}
   '/grafana/api':
     # May be a public or an internal DNS
-    target: https://grafana.tensure.cloud
+    target: ${GRAFANA_HOST_NAME}
     headers:
-     
+      Authorization: ${GRAFANA_BEARER_TOKEN} 
 
 grafana:
   # Publicly accessible domain
-  domain: https://grafana.tensure.cloud
-
+  domain: ${GRAFANA_HOST_NAME}
   # Is unified alerting enabled in Grafana?
   # See: https://grafana.com/blog/2021/06/14/the-new-unified-alerting-system-for-grafana-everything-you-need-to-know/
   # Optional. Default: false
   unifiedAlerting: false
 
-# Reference documentation http://backstage.io/docs/features/techdocs/configuration
-# Note: After experimenting with basic setup, use CI/CD to generate docs
-# and an external cloud storage when deploying TechDocs for production use-case.
-# https://backstage.io/docs/features/techdocs/how-to-guides#how-to-migrate-from-techdocs-basic-to-recommended-deployment-approach
 techdocs:
   builder: 'local' # Alternatives - 'external'
   generator:
     runIn: 'local' # Alternatives - 'local'
-  # publisher:
-  #   type: 'local' # Alternatives - 'googleGcs' or 'awsS3'. Read documentation for using alternatives.
   publisher:
     type: 'googleGcs'
     googleGcs:
-      bucketName: 'backstage-techdocs-tensure'
+      bucketName: ${TECHDOCS_GCS_BUCKET_NAME}
 
 scaffolder:
   # see https://backstage.io/docs/features/software-templates/configuration for software template options
@@ -221,29 +98,13 @@ catalog:
     - allow: [Template, User, Group, Component, System, API, Resource, Location]
   locations:
     - type: file
-      # target: /app/entities/users.yaml
-      target: /Users/vamsikrishna/prod-backstage/backstage-application/tensure-new-backstage/catalog/entities/users.yaml
-
-    - type: file
-      # target: /app/entities/groups.yaml
-      target: /Users/vamsikrishna/prod-backstage/backstage-application/tensure-new-backstage/catalog/entities/groups.yaml
+      target: /app/entities/org.yaml
 
     - type: url
       target: https://github.com/VamsiKrishna082/backstage-templates/blob/main/template.yaml
-   
 
-    ## Uncomment these lines to add more example data
-    # - type: url
-    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/all.yaml
 
-    ## Uncomment these lines to add an example org
-    # - type: url
-    #   target: https://github.com/backstage/backstage/blob/master/packages/catalog-model/examples/acme-corp.yaml
-    #   rules:
-    #     - allow: [User, Group]
-  # Experimental: Always use the search method in UrlReaderProcessor.
-  # New adopters are encouraged to enable it as this behavior will be the default in a future release.
-  useUrlReadersSearch: true
+    useUrlReadersSearch: true
 
 kubernetes:
   frontend:
@@ -254,12 +115,19 @@ kubernetes:
   clusterLocatorMethods:
     - type: 'gke'
       projectId: 'vamsi-krishna-sandbox'
-      # region: 'us-central1'
       skipTLSVerify: true
       skipMetricsLookup: true
       exposeDashboard: true
+    - type: 'gke'
+      projectId: 'apps-2b4b'
+      skipTLSVerify: true
+      skipMetricsLookup: true
+      exposeDashboard: true 
 
 # see https://backstage.io/docs/permissions/getting-started for more on the permission framework
 permission:
   # setting this to `false` will disable permissions
   enabled: true
+
+
+

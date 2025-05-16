@@ -404,37 +404,6 @@
       "packageName": "@backstage/core-components"
     },
     {
-      "path": "../../node_modules/@backstage/plugin-catalog/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "catalog": {
-            "type": "object",
-            "properties": {
-              "experimentalPagination": {
-                "deepVisibility": "frontend",
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "limit": {
-                        "type": "number"
-                      }
-                    }
-                  },
-                  {
-                    "type": "boolean"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-catalog"
-    },
-    {
       "path": "../../node_modules/@backstage/plugin-catalog-import/config.d.ts",
       "value": {
         "type": "object",
@@ -465,6 +434,37 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/plugin-catalog-import"
+    },
+    {
+      "path": "../../node_modules/@backstage/plugin-catalog/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "catalog": {
+            "type": "object",
+            "properties": {
+              "experimentalPagination": {
+                "deepVisibility": "frontend",
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "limit": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-catalog"
     },
     {
       "path": "../../node_modules/@backstage/plugin-search/config.d.ts",
@@ -577,42 +577,6 @@
       "packageName": "@headlamp-k8s/backstage-plugin-headlamp"
     },
     {
-      "path": "../../node_modules/@backstage-community/plugin-grafana/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "grafana": {
-            "type": "object",
-            "properties": {
-              "domain": {
-                "description": "Domain used by users to access Grafana web UI.\nExample: https://monitoring.eu.my-company.com/",
-                "visibility": "frontend",
-                "type": "string"
-              },
-              "proxyPath": {
-                "description": "Path to use for requests via the proxy, defaults to /grafana/api",
-                "visibility": "frontend",
-                "type": "string"
-              },
-              "unifiedAlerting": {
-                "description": "Is Grafana using unified alerting?",
-                "visibility": "frontend",
-                "type": "boolean"
-              }
-            },
-            "required": [
-              "domain"
-            ]
-          }
-        },
-        "required": [
-          "grafana"
-        ],
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage-community/plugin-grafana"
-    },
-    {
       "path": "../../node_modules/@roadiehq/backstage-plugin-argo-cd/config.d.ts",
       "value": {
         "type": "object",
@@ -685,6 +649,42 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@roadiehq/backstage-plugin-argo-cd"
+    },
+    {
+      "path": "../../node_modules/@backstage-community/plugin-grafana/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "grafana": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "description": "Domain used by users to access Grafana web UI.\nExample: https://monitoring.eu.my-company.com/",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "proxyPath": {
+                "description": "Path to use for requests via the proxy, defaults to /grafana/api",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "unifiedAlerting": {
+                "description": "Is Grafana using unified alerting?",
+                "visibility": "frontend",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        "required": [
+          "grafana"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage-community/plugin-grafana"
     },
     {
       "path": "../../node_modules/@backstage/integration/config.d.ts",
@@ -1713,7 +1713,7 @@
       "packageName": "@backstage/core-components"
     },
     {
-      "path": "../../node_modules/@backstage-community/plugin-grafana/node_modules/@backstage/core-components/config.d.ts",
+      "path": "../../node_modules/@roadiehq/backstage-plugin-argo-cd/node_modules/@backstage/core-components/config.d.ts",
       "value": {
         "type": "object",
         "properties": {
@@ -2092,6 +2092,113 @@
       "packageName": "@backstage/plugin-auth-backend-module-bitbucket-server-provider"
     },
     {
+      "path": "../../node_modules/@backstage/plugin-auth-backend-module-gcp-iap-provider/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "gcpIap": {
+                    "description": "Configuration for the Google Cloud Platform Identity-Aware Proxy (IAP) auth provider.",
+                    "type": "object",
+                    "properties": {
+                      "audience": {
+                        "description": "The audience to use when validating incoming JWT tokens.\nSee https://backstage.io/docs/auth/google/gcp-iap-auth",
+                        "type": "string"
+                      },
+                      "jwtHeader": {
+                        "description": "The name of the header to read the JWT token from, defaults to `'x-goog-iap-jwt-assertion'`.",
+                        "type": "string"
+                      },
+                      "signIn": {
+                        "type": "object",
+                        "properties": {
+                          "resolvers": {
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "resolver": {
+                                      "type": "string",
+                                      "const": "emailMatchingUserEntityAnnotation"
+                                    }
+                                  },
+                                  "required": [
+                                    "resolver"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "resolver": {
+                                      "type": "string",
+                                      "const": "idMatchingUserEntityAnnotation"
+                                    }
+                                  },
+                                  "required": [
+                                    "resolver"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "resolver": {
+                                      "type": "string",
+                                      "const": "emailLocalPartMatchingUserEntityName"
+                                    },
+                                    "allowedDomains": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "resolver"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "resolver": {
+                                      "type": "string",
+                                      "const": "emailMatchingUserEntityProfileEmail"
+                                    }
+                                  },
+                                  "required": [
+                                    "resolver"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "resolvers"
+                        ]
+                      },
+                      "sessionDuration": {}
+                    },
+                    "required": [
+                      "audience"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-auth-backend-module-gcp-iap-provider"
+    },
+    {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-cloudflare-access-provider/config.d.ts",
       "value": {
         "type": "object",
@@ -2198,7 +2305,7 @@
       "packageName": "@backstage/plugin-auth-backend-module-cloudflare-access-provider"
     },
     {
-      "path": "../../node_modules/@backstage/plugin-auth-backend-module-gcp-iap-provider/config.d.ts",
+      "path": "../../node_modules/@backstage/plugin-auth-backend-module-github-provider/config.d.ts",
       "value": {
         "type": "object",
         "properties": {
@@ -2208,92 +2315,102 @@
               "providers": {
                 "type": "object",
                 "properties": {
-                  "gcpIap": {
-                    "description": "Configuration for the Google Cloud Platform Identity-Aware Proxy (IAP) auth provider.",
+                  "github": {
+                    "visibility": "frontend",
                     "type": "object",
-                    "properties": {
-                      "audience": {
-                        "description": "The audience to use when validating incoming JWT tokens.\nSee https://backstage.io/docs/auth/google/gcp-iap-auth",
-                        "type": "string"
-                      },
-                      "jwtHeader": {
-                        "description": "The name of the header to read the JWT token from, defaults to `'x-goog-iap-jwt-assertion'`.",
-                        "type": "string"
-                      },
-                      "signIn": {
-                        "type": "object",
-                        "properties": {
-                          "resolvers": {
-                            "type": "array",
-                            "items": {
-                              "anyOf": [
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "resolver": {
-                                      "type": "string",
-                                      "const": "emailMatchingUserEntityAnnotation"
-                                    }
-                                  },
-                                  "required": [
-                                    "resolver"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "resolver": {
-                                      "type": "string",
-                                      "const": "idMatchingUserEntityAnnotation"
-                                    }
-                                  },
-                                  "required": [
-                                    "resolver"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "resolver": {
-                                      "type": "string",
-                                      "const": "emailLocalPartMatchingUserEntityName"
-                                    },
-                                    "allowedDomains": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "required": [
-                                    "resolver"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "resolver": {
-                                      "type": "string",
-                                      "const": "emailMatchingUserEntityProfileEmail"
-                                    }
-                                  },
-                                  "required": [
-                                    "resolver"
-                                  ]
-                                }
-                              ]
-                            }
-                          }
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "clientId": {
+                          "type": "string"
                         },
-                        "required": [
-                          "resolvers"
-                        ]
+                        "clientSecret": {
+                          "visibility": "secret",
+                          "type": "string"
+                        },
+                        "callbackUrl": {
+                          "type": "string"
+                        },
+                        "enterpriseInstanceUrl": {
+                          "type": "string"
+                        },
+                        "additionalScopes": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "signIn": {
+                          "type": "object",
+                          "properties": {
+                            "resolvers": {
+                              "type": "array",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "usernameMatchingUserEntityName"
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "emailLocalPartMatchingUserEntityName"
+                                      },
+                                      "allowedDomains": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "emailMatchingUserEntityProfileEmail"
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "resolvers"
+                          ]
+                        },
+                        "sessionDuration": {}
                       },
-                      "sessionDuration": {}
-                    },
-                    "required": [
-                      "audience"
-                    ]
+                      "required": [
+                        "clientId",
+                        "clientSecret"
+                      ]
+                    }
                   }
                 }
               }
@@ -2302,7 +2419,7 @@
         },
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
-      "packageName": "@backstage/plugin-auth-backend-module-gcp-iap-provider"
+      "packageName": "@backstage/plugin-auth-backend-module-github-provider"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-gitlab-provider/config.d.ts",
@@ -2673,6 +2790,122 @@
       "packageName": "@backstage/plugin-auth-backend-module-microsoft-provider"
     },
     {
+      "path": "../../node_modules/@backstage/plugin-auth-backend-module-oidc-provider/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "oidc": {
+                    "visibility": "frontend",
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "clientId": {
+                          "type": "string"
+                        },
+                        "clientSecret": {
+                          "visibility": "secret",
+                          "type": "string"
+                        },
+                        "metadataUrl": {
+                          "type": "string"
+                        },
+                        "callbackUrl": {
+                          "type": "string"
+                        },
+                        "tokenEndpointAuthMethod": {
+                          "type": "string"
+                        },
+                        "tokenSignedResponseAlg": {
+                          "type": "string"
+                        },
+                        "additionalScopes": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "prompt": {
+                          "type": "string"
+                        },
+                        "timeout": {},
+                        "signIn": {
+                          "type": "object",
+                          "properties": {
+                            "resolvers": {
+                              "type": "array",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "emailLocalPartMatchingUserEntityName"
+                                      },
+                                      "allowedDomains": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "emailMatchingUserEntityProfileEmail"
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "resolvers"
+                          ]
+                        },
+                        "sessionDuration": {}
+                      },
+                      "required": [
+                        "clientId",
+                        "clientSecret",
+                        "metadataUrl"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-auth-backend-module-oidc-provider"
+    },
+    {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-oauth2-provider/config.d.ts",
       "value": {
         "type": "object",
@@ -2800,239 +3033,6 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/plugin-auth-backend-module-oauth2-provider"
-    },
-    {
-      "path": "../../node_modules/@backstage/plugin-auth-backend-module-github-provider/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "auth": {
-            "type": "object",
-            "properties": {
-              "providers": {
-                "type": "object",
-                "properties": {
-                  "github": {
-                    "visibility": "frontend",
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                        "clientId": {
-                          "type": "string"
-                        },
-                        "clientSecret": {
-                          "visibility": "secret",
-                          "type": "string"
-                        },
-                        "callbackUrl": {
-                          "type": "string"
-                        },
-                        "enterpriseInstanceUrl": {
-                          "type": "string"
-                        },
-                        "additionalScopes": {
-                          "anyOf": [
-                            {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "signIn": {
-                          "type": "object",
-                          "properties": {
-                            "resolvers": {
-                              "type": "array",
-                              "items": {
-                                "anyOf": [
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "usernameMatchingUserEntityName"
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  },
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "emailLocalPartMatchingUserEntityName"
-                                      },
-                                      "allowedDomains": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  },
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "emailMatchingUserEntityProfileEmail"
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  }
-                                ]
-                              }
-                            }
-                          },
-                          "required": [
-                            "resolvers"
-                          ]
-                        },
-                        "sessionDuration": {}
-                      },
-                      "required": [
-                        "clientId",
-                        "clientSecret"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-auth-backend-module-github-provider"
-    },
-    {
-      "path": "../../node_modules/@backstage/plugin-auth-backend-module-oidc-provider/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "auth": {
-            "type": "object",
-            "properties": {
-              "providers": {
-                "type": "object",
-                "properties": {
-                  "oidc": {
-                    "visibility": "frontend",
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                        "clientId": {
-                          "type": "string"
-                        },
-                        "clientSecret": {
-                          "visibility": "secret",
-                          "type": "string"
-                        },
-                        "metadataUrl": {
-                          "type": "string"
-                        },
-                        "callbackUrl": {
-                          "type": "string"
-                        },
-                        "tokenEndpointAuthMethod": {
-                          "type": "string"
-                        },
-                        "tokenSignedResponseAlg": {
-                          "type": "string"
-                        },
-                        "additionalScopes": {
-                          "anyOf": [
-                            {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "prompt": {
-                          "type": "string"
-                        },
-                        "timeout": {},
-                        "signIn": {
-                          "type": "object",
-                          "properties": {
-                            "resolvers": {
-                              "type": "array",
-                              "items": {
-                                "anyOf": [
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "emailLocalPartMatchingUserEntityName"
-                                      },
-                                      "allowedDomains": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  },
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "emailMatchingUserEntityProfileEmail"
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  }
-                                ]
-                              }
-                            }
-                          },
-                          "required": [
-                            "resolvers"
-                          ]
-                        },
-                        "sessionDuration": {}
-                      },
-                      "required": [
-                        "clientId",
-                        "clientSecret",
-                        "metadataUrl"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-auth-backend-module-oidc-provider"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-okta-provider/config.d.ts",

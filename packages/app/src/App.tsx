@@ -39,6 +39,9 @@ import { catalogEntityCreatePermission } from '@backstage/plugin-catalog-common/
 
 // added new
 import { HeadlampPage } from '@headlamp-k8s/backstage-plugin-headlamp';
+// import { GcpProjectsPage } from '@backstage/plugin-gcp-projects';
+
+import { GcpProjectsPage} from "@tensure/plugin-gcp-projects";
 
 const app = createApp({
   apis,
@@ -96,6 +99,7 @@ const routes = (
     </Route>
     <Route path="/create" element={<ScaffolderPage />} />
     <Route path="/headlamp" element={<HeadlampPage />} />
+    <Route path="/gcp-projects" element={<GcpProjectsPage  />} />
     <Route path="/api-docs" element={<ApiExplorerPage />} />
     <Route
       path="/catalog-import"
@@ -120,5 +124,5 @@ export default app.createRoot(
     <AppRouter>
       <Root>{routes}</Root>
     </AppRouter>
-  </>,
+  </>
 );

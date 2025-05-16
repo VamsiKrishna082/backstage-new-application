@@ -2736,6 +2736,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@backstage-community/plugin-gcp-projects@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@backstage-community/plugin-gcp-projects@npm:0.8.0"
+  dependencies:
+    "@backstage/core-components": "npm:^0.17.1"
+    "@backstage/core-plugin-api": "npm:^1.10.6"
+    "@material-ui/core": "npm:^4.12.2"
+    "@react-hookz/web": "npm:^24.0.0"
+    "@types/react": "npm:^16.13.1 || ^17.0.0"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-router-dom: 6.0.0-beta.0 || ^6.3.0
+  checksum: 10c0/888447ea2f593690da6793e6f2c5ddf2f9f66a5dac21abdcca0e71c7a51131d066bcd5b44ad1c010577c7bca108c9c8b4adbd57837eed8a7ba0a7ce66c125cb2
+  languageName: node
+  linkType: hard
+
 "@backstage-community/plugin-github-actions@npm:^0.10.0":
   version: 0.10.0
   resolution: "@backstage-community/plugin-github-actions@npm:0.10.0"
@@ -3722,6 +3739,33 @@ __metadata:
     "@types/react":
       optional: true
   checksum: 10c0/6d16f1e9fa4d42f656d6e84bb2b923a6dfc25be7c6478127aec4f11654a32c65ccc4fade5598a02ef3cf6af5a8c391e1860824cdc0643ef3ba438b4a6f84952d
+  languageName: node
+  linkType: hard
+
+"@backstage/dev-utils@npm:^1.1.9":
+  version: 1.1.9
+  resolution: "@backstage/dev-utils@npm:1.1.9"
+  dependencies:
+    "@backstage/app-defaults": "npm:^1.6.1"
+    "@backstage/catalog-model": "npm:^1.7.3"
+    "@backstage/core-app-api": "npm:^1.16.1"
+    "@backstage/core-components": "npm:^0.17.1"
+    "@backstage/core-plugin-api": "npm:^1.10.6"
+    "@backstage/integration-react": "npm:^1.2.6"
+    "@backstage/plugin-catalog-react": "npm:^1.17.0"
+    "@backstage/theme": "npm:^0.6.5"
+    "@material-ui/core": "npm:^4.12.2"
+    "@material-ui/icons": "npm:^4.9.1"
+    react-use: "npm:^17.2.4"
+  peerDependencies:
+    "@types/react": ^17.0.0 || ^18.0.0
+    react: ^17.0.0 || ^18.0.0
+    react-dom: ^17.0.0 || ^18.0.0
+    react-router-dom: ^6.3.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/3f7fddd9dd321f12f2f9454d491f4ab3ced371fd2549fd8a1dc16ecdb2c7254aaf991c751c2d3e94b80ffc9a4c5ef992d77f316ea4c74562bdbd6b2d15987d5b
   languageName: node
   linkType: hard
 
@@ -4727,6 +4771,23 @@ __metadata:
     express: "npm:^4.17.1"
     uri-template: "npm:^2.0.0"
   checksum: 10c0/e6014659a9619e3db397168810b75f660b5d370aa729b90d0e3436fb3928a33ed9fdf0c855c74c1ca722ec5fe4fab72ed7cd00a328099d0778bcb0a9b2bf840e
+  languageName: node
+  linkType: hard
+
+"@backstage/plugin-gcp-projects@npm:^0.3.51":
+  version: 0.3.51
+  resolution: "@backstage/plugin-gcp-projects@npm:0.3.51"
+  dependencies:
+    "@backstage/core-components": "npm:^0.14.4"
+    "@backstage/core-plugin-api": "npm:^1.9.2"
+    "@material-ui/core": "npm:^4.12.2"
+    "@react-hookz/web": "npm:^24.0.0"
+    "@types/react": "npm:^16.13.1 || ^17.0.0"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-router-dom: 6.0.0-beta.0 || ^6.3.0
+  checksum: 10c0/4f7f5fc2bde4f30df49fbf5e30fad7136d28dc896fe033414ace4d0a5250b2874075c8d4a17412cb451b6ba1b2d330a25305c42d56e8ad0b2682b61bd669b776
   languageName: node
   linkType: hard
 
@@ -12625,6 +12686,47 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tensure/plugin-gcp-projects@npm:0.8.0, @tensure/plugin-gcp-projects@workspace:plugins/gcp-project-plugin":
+  version: 0.0.0-use.local
+  resolution: "@tensure/plugin-gcp-projects@workspace:plugins/gcp-project-plugin"
+  dependencies:
+    "@backstage/cli": "npm:^0.32.0"
+    "@backstage/core-components": "npm:^0.17.1"
+    "@backstage/core-plugin-api": "npm:^1.10.6"
+    "@backstage/dev-utils": "npm:^1.1.9"
+    "@material-ui/core": "npm:^4.12.2"
+    "@react-hookz/web": "npm:^24.0.0"
+    "@testing-library/dom": "npm:^10.0.0"
+    "@testing-library/jest-dom": "npm:^6.0.0"
+    "@testing-library/react": "npm:^15.0.0"
+    "@types/react": "npm:^16.13.1 || ^17.0.0"
+    "@types/react-dom": "npm:^18.2.19"
+    react: "npm:^16.13.1 || ^17.0.0 || ^18.0.0"
+    react-dom: "npm:^16.13.1 || ^17.0.0 || ^18.0.0"
+    react-router-dom: "npm:6.0.0-beta.0 || ^6.3.0"
+  peerDependencies:
+    react: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.13.1 || ^17.0.0 || ^18.0.0
+    react-router-dom: 6.0.0-beta.0 || ^6.3.0
+  languageName: unknown
+  linkType: soft
+
+"@testing-library/dom@npm:^10.0.0":
+  version: 10.4.0
+  resolution: "@testing-library/dom@npm:10.4.0"
+  dependencies:
+    "@babel/code-frame": "npm:^7.10.4"
+    "@babel/runtime": "npm:^7.12.5"
+    "@types/aria-query": "npm:^5.0.1"
+    aria-query: "npm:5.3.0"
+    chalk: "npm:^4.1.0"
+    dom-accessibility-api: "npm:^0.5.9"
+    lz-string: "npm:^1.5.0"
+    pretty-format: "npm:^27.0.2"
+  checksum: 10c0/0352487720ecd433400671e773df0b84b8268fb3fe8e527cdfd7c11b1365b398b4e0eddba6e7e0c85e8d615f48257753283fccec41f6b986fd6c85f15eb5f84f
+  languageName: node
+  linkType: hard
+
 "@testing-library/dom@npm:^9.0.0":
   version: 9.3.4
   resolution: "@testing-library/dom@npm:9.3.4"
@@ -12667,6 +12769,24 @@ __metadata:
     react: ^18.0.0
     react-dom: ^18.0.0
   checksum: 10c0/1ccf4eb1510500cc20a805cb0244c9098dca28a8745173a8f71ea1274d63774f0b7898a35c878b43c797b89c13621548909ff37843b835c1a27ee1efbbdd098c
+  languageName: node
+  linkType: hard
+
+"@testing-library/react@npm:^15.0.0":
+  version: 15.0.7
+  resolution: "@testing-library/react@npm:15.0.7"
+  dependencies:
+    "@babel/runtime": "npm:^7.12.5"
+    "@testing-library/dom": "npm:^10.0.0"
+    "@types/react-dom": "npm:^18.0.0"
+  peerDependencies:
+    "@types/react": ^18.0.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/ac8ee8968e81949ecb35f7ee34741c2c043f73dd7fee2247d56f6de6a30de4742af94f25264356863974e54387485b46c9448ecf3f6ca41cf4339011c369f2d4
   languageName: node
   linkType: hard
 
@@ -14560,6 +14680,7 @@ __metadata:
     "@material-ui/core": "npm:^4.12.2"
     "@material-ui/icons": "npm:^4.9.1"
     "@playwright/test": "npm:^1.32.3"
+    "@tensure/plugin-gcp-projects": "npm:0.8.0"
     "@testing-library/dom": "npm:^9.0.0"
     "@testing-library/jest-dom": "npm:^6.0.0"
     "@testing-library/react": "npm:^14.0.0"
@@ -14689,6 +14810,15 @@ __metadata:
   dependencies:
     deep-equal: "npm:^2.0.5"
   checksum: 10c0/edcbc8044c4663d6f88f785e983e6784f98cb62b4ba1e9dd8d61b725d0203e4cfca38d676aee984c31f354103461102a3d583aa4fbe4fd0a89b679744f4e5faf
+  languageName: node
+  linkType: hard
+
+"aria-query@npm:5.3.0":
+  version: 5.3.0
+  resolution: "aria-query@npm:5.3.0"
+  dependencies:
+    dequal: "npm:^2.0.3"
+  checksum: 10c0/2bff0d4eba5852a9dd578ecf47eaef0e82cc52569b48469b0aac2db5145db0b17b7a58d9e01237706d1e14b7a1b0ac9b78e9c97027ad97679dd8f91b85da1469
   languageName: node
   linkType: hard
 
@@ -28455,7 +28585,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-router-dom@npm:^6.28.0, react-router-dom@npm:^6.3.0":
+"react-router-dom@npm:6.0.0-beta.0 || ^6.3.0, react-router-dom@npm:^6.28.0, react-router-dom@npm:^6.3.0":
   version: 6.30.0
   resolution: "react-router-dom@npm:6.30.0"
   dependencies:
@@ -28605,7 +28735,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^18.0.2":
+"react@npm:^16.13.1 || ^17.0.0 || ^18.0.0, react@npm:^18.0.2":
   version: 18.3.1
   resolution: "react@npm:18.3.1"
   dependencies:
@@ -29427,9 +29557,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root@workspace:."
   dependencies:
+    "@backstage-community/plugin-gcp-projects": "npm:^0.8.0"
     "@backstage-community/plugin-grafana": "npm:^0.4.0"
     "@backstage/cli": "npm:^0.32.0"
     "@backstage/e2e-test-utils": "npm:^0.1.1"
+    "@backstage/plugin-gcp-projects": "npm:^0.3.51"
     "@playwright/test": "npm:^1.32.3"
     "@roadiehq/backstage-plugin-argo-cd": "npm:^2.8.7"
     node-gyp: "npm:^10.0.0"

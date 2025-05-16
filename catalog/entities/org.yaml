@@ -48,6 +48,46 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: User
 metadata:
+  name: vamsii
+spec:
+  profile:
+    displayName: Vamsi Test
+    email: vamsi@ioinfo.shop
+  memberOf: [cloud]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: test1
+spec:
+  profile:
+    displayName: test1
+    email: test1@ioinfo.shop
+  memberOf: [cloud]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: test2
+spec:
+  profile:
+    displayName: test2
+    email: test2@ioinfo.shop
+  memberOf: [cloud]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: test3
+spec:
+  profile:
+    displayName: test3
+    email: test3@ioinfo.shop
+  memberOf: [cloud]
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
   name: Joe
 spec:
   profile:

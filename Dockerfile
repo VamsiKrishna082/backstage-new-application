@@ -25,6 +25,9 @@ ENV NODE_ENV production
 
 COPY --chown=node:node . .
 
+COPY --chown=node:node node_modules/@headlamp-k8s/backstage-plugin-headlamp /app/node_modules/@headlamp-k8s/
+COPY --chown=node:node node_modules/@headlamp-k8s/backstage-plugin-headlamp-backend /app/node_modules/@headlamp-k8s/
+
 COPY --chown=node:node yarn.lock package.json packages/backend/dist/skeleton.tar.gz ./
 RUN tar xzf skeleton.tar.gz && rm skeleton.tar.gz
 

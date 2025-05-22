@@ -131,6 +131,176 @@
       "path": "../../node_modules/@backstage/plugin-user-settings/package.json"
     },
     {
+      "path": "../../node_modules/@backstage-community/plugin-cost-insights/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "costInsights": {
+            "type": "object",
+            "properties": {
+              "engineerCost": {
+                "visibility": "frontend",
+                "type": "number"
+              },
+              "engineerThreshold": {
+                "visibility": "frontend",
+                "type": "number"
+              },
+              "hideTrendLine": {
+                "visibility": "frontend",
+                "type": "boolean"
+              },
+              "baseCurrency": {
+                "visibility": "frontend",
+                "type": "object",
+                "properties": {
+                  "locale": {
+                    "visibility": "frontend",
+                    "type": "string"
+                  },
+                  "options": {
+                    "type": "object",
+                    "properties": {
+                      "localeMatcher": {
+                        "visibility": "frontend",
+                        "type": "string"
+                      },
+                      "style": {
+                        "visibility": "frontend",
+                        "type": "string"
+                      },
+                      "currency": {
+                        "visibility": "frontend",
+                        "type": "string"
+                      },
+                      "currencySign": {
+                        "visibility": "frontend",
+                        "type": "string"
+                      },
+                      "useGrouping": {
+                        "visibility": "frontend",
+                        "type": "boolean"
+                      },
+                      "minimumIntegerDigits": {
+                        "visibility": "frontend",
+                        "type": "number"
+                      },
+                      "minimumFractionDigits": {
+                        "visibility": "frontend",
+                        "type": "number"
+                      },
+                      "maximumFractionDigits": {
+                        "visibility": "frontend",
+                        "type": "number"
+                      },
+                      "minimumSignificantDigits": {
+                        "visibility": "frontend",
+                        "type": "number"
+                      },
+                      "maximumSignificantDigits": {
+                        "visibility": "frontend",
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              },
+              "products": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "icon": {
+                      "visibility": "frontend",
+                      "enum": [
+                        "compute",
+                        "data",
+                        "database",
+                        "ml",
+                        "search",
+                        "storage"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              },
+              "metrics": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "default": {
+                      "visibility": "frontend",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              },
+              "currencies": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "properties": {
+                    "label": {
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "unit": {
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "kind": {
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "prefix": {
+                      "visibility": "frontend",
+                      "type": "string"
+                    },
+                    "rate": {
+                      "visibility": "frontend",
+                      "type": "number"
+                    },
+                    "default": {
+                      "visibility": "frontend",
+                      "type": "boolean"
+                    }
+                  },
+                  "required": [
+                    "label",
+                    "unit"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "engineerCost"
+            ]
+          }
+        },
+        "required": [
+          "costInsights"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage-community/plugin-cost-insights"
+    },
+    {
       "path": "../../node_modules/@backstage/core-app-api/config.d.ts",
       "value": {
         "type": "object",
@@ -404,6 +574,37 @@
       "packageName": "@backstage/core-components"
     },
     {
+      "path": "../../node_modules/@backstage/plugin-catalog/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "catalog": {
+            "type": "object",
+            "properties": {
+              "experimentalPagination": {
+                "deepVisibility": "frontend",
+                "anyOf": [
+                  {
+                    "type": "object",
+                    "properties": {
+                      "limit": {
+                        "type": "number"
+                      }
+                    }
+                  },
+                  {
+                    "type": "boolean"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-catalog"
+    },
+    {
       "path": "../../node_modules/@backstage/plugin-catalog-import/config.d.ts",
       "value": {
         "type": "object",
@@ -434,37 +635,6 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/plugin-catalog-import"
-    },
-    {
-      "path": "../../node_modules/@backstage/plugin-catalog/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "catalog": {
-            "type": "object",
-            "properties": {
-              "experimentalPagination": {
-                "deepVisibility": "frontend",
-                "anyOf": [
-                  {
-                    "type": "object",
-                    "properties": {
-                      "limit": {
-                        "type": "number"
-                      }
-                    }
-                  },
-                  {
-                    "type": "boolean"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-catalog"
     },
     {
       "path": "../../node_modules/@backstage/plugin-search/config.d.ts",
@@ -577,6 +747,42 @@
       "packageName": "@headlamp-k8s/backstage-plugin-headlamp"
     },
     {
+      "path": "../../node_modules/@backstage-community/plugin-grafana/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "grafana": {
+            "type": "object",
+            "properties": {
+              "domain": {
+                "description": "Domain used by users to access Grafana web UI.\nExample: https://monitoring.eu.my-company.com/",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "proxyPath": {
+                "description": "Path to use for requests via the proxy, defaults to /grafana/api",
+                "visibility": "frontend",
+                "type": "string"
+              },
+              "unifiedAlerting": {
+                "description": "Is Grafana using unified alerting?",
+                "visibility": "frontend",
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "domain"
+            ]
+          }
+        },
+        "required": [
+          "grafana"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage-community/plugin-grafana"
+    },
+    {
       "path": "../../node_modules/@roadiehq/backstage-plugin-argo-cd/config.d.ts",
       "value": {
         "type": "object",
@@ -649,42 +855,6 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@roadiehq/backstage-plugin-argo-cd"
-    },
-    {
-      "path": "../../node_modules/@backstage-community/plugin-grafana/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "grafana": {
-            "type": "object",
-            "properties": {
-              "domain": {
-                "description": "Domain used by users to access Grafana web UI.\nExample: https://monitoring.eu.my-company.com/",
-                "visibility": "frontend",
-                "type": "string"
-              },
-              "proxyPath": {
-                "description": "Path to use for requests via the proxy, defaults to /grafana/api",
-                "visibility": "frontend",
-                "type": "string"
-              },
-              "unifiedAlerting": {
-                "description": "Is Grafana using unified alerting?",
-                "visibility": "frontend",
-                "type": "boolean"
-              }
-            },
-            "required": [
-              "domain"
-            ]
-          }
-        },
-        "required": [
-          "grafana"
-        ],
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage-community/plugin-grafana"
     },
     {
       "path": "../../node_modules/@backstage/integration/config.d.ts",
@@ -1713,7 +1883,7 @@
       "packageName": "@backstage/core-components"
     },
     {
-      "path": "../../node_modules/@roadiehq/backstage-plugin-argo-cd/node_modules/@backstage/core-components/config.d.ts",
+      "path": "../../node_modules/@backstage-community/plugin-grafana/node_modules/@backstage/core-components/config.d.ts",
       "value": {
         "type": "object",
         "properties": {
@@ -1757,6 +1927,63 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/core-components"
+    },
+    {
+      "path": "../../node_modules/@backstage/plugin-auth-backend-module-auth0-provider/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "auth0": {
+                    "visibility": "frontend",
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "clientId": {
+                          "type": "string"
+                        },
+                        "clientSecret": {
+                          "visibility": "secret",
+                          "type": "string"
+                        },
+                        "domain": {
+                          "type": "string"
+                        },
+                        "callbackUrl": {
+                          "type": "string"
+                        },
+                        "audience": {
+                          "type": "string"
+                        },
+                        "connection": {
+                          "type": "string"
+                        },
+                        "connectionScope": {
+                          "type": "string"
+                        },
+                        "sessionDuration": {}
+                      },
+                      "required": [
+                        "clientId",
+                        "clientSecret",
+                        "domain"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-auth-backend-module-auth0-provider"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-atlassian-provider/config.d.ts",
@@ -1874,63 +2101,6 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/plugin-auth-backend-module-atlassian-provider"
-    },
-    {
-      "path": "../../node_modules/@backstage/plugin-auth-backend-module-auth0-provider/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "auth": {
-            "type": "object",
-            "properties": {
-              "providers": {
-                "type": "object",
-                "properties": {
-                  "auth0": {
-                    "visibility": "frontend",
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                        "clientId": {
-                          "type": "string"
-                        },
-                        "clientSecret": {
-                          "visibility": "secret",
-                          "type": "string"
-                        },
-                        "domain": {
-                          "type": "string"
-                        },
-                        "callbackUrl": {
-                          "type": "string"
-                        },
-                        "audience": {
-                          "type": "string"
-                        },
-                        "connection": {
-                          "type": "string"
-                        },
-                        "connectionScope": {
-                          "type": "string"
-                        },
-                        "sessionDuration": {}
-                      },
-                      "required": [
-                        "clientId",
-                        "clientSecret",
-                        "domain"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-auth-backend-module-auth0-provider"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-bitbucket-provider/config.d.ts",
@@ -2092,6 +2262,112 @@
       "packageName": "@backstage/plugin-auth-backend-module-bitbucket-server-provider"
     },
     {
+      "path": "../../node_modules/@backstage/plugin-auth-backend-module-cloudflare-access-provider/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "cfaccess": {
+                    "visibility": "frontend",
+                    "type": "object",
+                    "properties": {
+                      "teamName": {
+                        "type": "string"
+                      },
+                      "serviceTokens": {
+                        "deepVisibility": "secret",
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "token": {
+                              "type": "string"
+                            },
+                            "subject": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "subject",
+                            "token"
+                          ]
+                        }
+                      },
+                      "jwtHeaderName": {
+                        "type": "string"
+                      },
+                      "authorizationCookieName": {
+                        "type": "string"
+                      },
+                      "signIn": {
+                        "type": "object",
+                        "properties": {
+                          "resolvers": {
+                            "type": "array",
+                            "items": {
+                              "anyOf": [
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "resolver": {
+                                      "type": "string",
+                                      "const": "emailLocalPartMatchingUserEntityName"
+                                    },
+                                    "allowedDomains": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "string"
+                                      }
+                                    }
+                                  },
+                                  "required": [
+                                    "resolver"
+                                  ]
+                                },
+                                {
+                                  "type": "object",
+                                  "properties": {
+                                    "resolver": {
+                                      "type": "string",
+                                      "const": "emailMatchingUserEntityProfileEmail"
+                                    }
+                                  },
+                                  "required": [
+                                    "resolver"
+                                  ]
+                                }
+                              ]
+                            }
+                          }
+                        },
+                        "required": [
+                          "resolvers"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "teamName"
+                    ]
+                  },
+                  "backstageTokenExpiration": {
+                    "description": "The backstage token expiration."
+                  },
+                  "sessionDuration": {}
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-auth-backend-module-cloudflare-access-provider"
+    },
+    {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-gcp-iap-provider/config.d.ts",
       "value": {
         "type": "object",
@@ -2197,112 +2473,6 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/plugin-auth-backend-module-gcp-iap-provider"
-    },
-    {
-      "path": "../../node_modules/@backstage/plugin-auth-backend-module-cloudflare-access-provider/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "auth": {
-            "type": "object",
-            "properties": {
-              "providers": {
-                "type": "object",
-                "properties": {
-                  "cfaccess": {
-                    "visibility": "frontend",
-                    "type": "object",
-                    "properties": {
-                      "teamName": {
-                        "type": "string"
-                      },
-                      "serviceTokens": {
-                        "deepVisibility": "secret",
-                        "type": "array",
-                        "items": {
-                          "type": "object",
-                          "properties": {
-                            "token": {
-                              "type": "string"
-                            },
-                            "subject": {
-                              "type": "string"
-                            }
-                          },
-                          "required": [
-                            "subject",
-                            "token"
-                          ]
-                        }
-                      },
-                      "jwtHeaderName": {
-                        "type": "string"
-                      },
-                      "authorizationCookieName": {
-                        "type": "string"
-                      },
-                      "signIn": {
-                        "type": "object",
-                        "properties": {
-                          "resolvers": {
-                            "type": "array",
-                            "items": {
-                              "anyOf": [
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "resolver": {
-                                      "type": "string",
-                                      "const": "emailLocalPartMatchingUserEntityName"
-                                    },
-                                    "allowedDomains": {
-                                      "type": "array",
-                                      "items": {
-                                        "type": "string"
-                                      }
-                                    }
-                                  },
-                                  "required": [
-                                    "resolver"
-                                  ]
-                                },
-                                {
-                                  "type": "object",
-                                  "properties": {
-                                    "resolver": {
-                                      "type": "string",
-                                      "const": "emailMatchingUserEntityProfileEmail"
-                                    }
-                                  },
-                                  "required": [
-                                    "resolver"
-                                  ]
-                                }
-                              ]
-                            }
-                          }
-                        },
-                        "required": [
-                          "resolvers"
-                        ]
-                      }
-                    },
-                    "required": [
-                      "teamName"
-                    ]
-                  },
-                  "backstageTokenExpiration": {
-                    "description": "The backstage token expiration."
-                  },
-                  "sessionDuration": {}
-                }
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-auth-backend-module-cloudflare-access-provider"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-github-provider/config.d.ts",
@@ -2790,122 +2960,6 @@
       "packageName": "@backstage/plugin-auth-backend-module-microsoft-provider"
     },
     {
-      "path": "../../node_modules/@backstage/plugin-auth-backend-module-oidc-provider/config.d.ts",
-      "value": {
-        "type": "object",
-        "properties": {
-          "auth": {
-            "type": "object",
-            "properties": {
-              "providers": {
-                "type": "object",
-                "properties": {
-                  "oidc": {
-                    "visibility": "frontend",
-                    "type": "object",
-                    "additionalProperties": {
-                      "type": "object",
-                      "properties": {
-                        "clientId": {
-                          "type": "string"
-                        },
-                        "clientSecret": {
-                          "visibility": "secret",
-                          "type": "string"
-                        },
-                        "metadataUrl": {
-                          "type": "string"
-                        },
-                        "callbackUrl": {
-                          "type": "string"
-                        },
-                        "tokenEndpointAuthMethod": {
-                          "type": "string"
-                        },
-                        "tokenSignedResponseAlg": {
-                          "type": "string"
-                        },
-                        "additionalScopes": {
-                          "anyOf": [
-                            {
-                              "type": "array",
-                              "items": {
-                                "type": "string"
-                              }
-                            },
-                            {
-                              "type": "string"
-                            }
-                          ]
-                        },
-                        "prompt": {
-                          "type": "string"
-                        },
-                        "timeout": {},
-                        "signIn": {
-                          "type": "object",
-                          "properties": {
-                            "resolvers": {
-                              "type": "array",
-                              "items": {
-                                "anyOf": [
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "emailLocalPartMatchingUserEntityName"
-                                      },
-                                      "allowedDomains": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "string"
-                                        }
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  },
-                                  {
-                                    "type": "object",
-                                    "properties": {
-                                      "resolver": {
-                                        "type": "string",
-                                        "const": "emailMatchingUserEntityProfileEmail"
-                                      }
-                                    },
-                                    "required": [
-                                      "resolver"
-                                    ]
-                                  }
-                                ]
-                              }
-                            }
-                          },
-                          "required": [
-                            "resolvers"
-                          ]
-                        },
-                        "sessionDuration": {}
-                      },
-                      "required": [
-                        "clientId",
-                        "clientSecret",
-                        "metadataUrl"
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "$schema": "http://json-schema.org/draft-07/schema#"
-      },
-      "packageName": "@backstage/plugin-auth-backend-module-oidc-provider"
-    },
-    {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-oauth2-provider/config.d.ts",
       "value": {
         "type": "object",
@@ -3033,6 +3087,122 @@
         "$schema": "http://json-schema.org/draft-07/schema#"
       },
       "packageName": "@backstage/plugin-auth-backend-module-oauth2-provider"
+    },
+    {
+      "path": "../../node_modules/@backstage/plugin-auth-backend-module-oidc-provider/config.d.ts",
+      "value": {
+        "type": "object",
+        "properties": {
+          "auth": {
+            "type": "object",
+            "properties": {
+              "providers": {
+                "type": "object",
+                "properties": {
+                  "oidc": {
+                    "visibility": "frontend",
+                    "type": "object",
+                    "additionalProperties": {
+                      "type": "object",
+                      "properties": {
+                        "clientId": {
+                          "type": "string"
+                        },
+                        "clientSecret": {
+                          "visibility": "secret",
+                          "type": "string"
+                        },
+                        "metadataUrl": {
+                          "type": "string"
+                        },
+                        "callbackUrl": {
+                          "type": "string"
+                        },
+                        "tokenEndpointAuthMethod": {
+                          "type": "string"
+                        },
+                        "tokenSignedResponseAlg": {
+                          "type": "string"
+                        },
+                        "additionalScopes": {
+                          "anyOf": [
+                            {
+                              "type": "array",
+                              "items": {
+                                "type": "string"
+                              }
+                            },
+                            {
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "prompt": {
+                          "type": "string"
+                        },
+                        "timeout": {},
+                        "signIn": {
+                          "type": "object",
+                          "properties": {
+                            "resolvers": {
+                              "type": "array",
+                              "items": {
+                                "anyOf": [
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "emailLocalPartMatchingUserEntityName"
+                                      },
+                                      "allowedDomains": {
+                                        "type": "array",
+                                        "items": {
+                                          "type": "string"
+                                        }
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  },
+                                  {
+                                    "type": "object",
+                                    "properties": {
+                                      "resolver": {
+                                        "type": "string",
+                                        "const": "emailMatchingUserEntityProfileEmail"
+                                      }
+                                    },
+                                    "required": [
+                                      "resolver"
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+                          "required": [
+                            "resolvers"
+                          ]
+                        },
+                        "sessionDuration": {}
+                      },
+                      "required": [
+                        "clientId",
+                        "clientSecret",
+                        "metadataUrl"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "packageName": "@backstage/plugin-auth-backend-module-oidc-provider"
     },
     {
       "path": "../../node_modules/@backstage/plugin-auth-backend-module-okta-provider/config.d.ts",

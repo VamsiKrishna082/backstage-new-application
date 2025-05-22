@@ -32,10 +32,20 @@ backend:
       user: backstage
       password: ${BACKSTAGE_DB_PASSWORD}
 
+# integrations:
+#   github:
+#     - host: github.com
+#       token: ${BACKSTAGE_GITHUB_KEY}
+
 integrations:
   github:
     - host: github.com
-      token: ${BACKSTAGE_GITHUB_KEY}
+      apps:
+        - appId: ${GITHUB_APP_ID}
+          clientId: ${GITHUB_APP_CLIENT_ID}
+          clientSecret: ${GITHUB_APP_CLIENT_SECRET}
+          privateKey: ${GITHUB_APP_PRIVATE_KEY}
+          webhookSecret: ${GITHUB_APP_WEBHOOK_SECRET}
 
 auth:
   environment: production

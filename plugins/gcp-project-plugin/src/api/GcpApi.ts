@@ -30,4 +30,8 @@ export type GcpApi = {
     projectId: string;
     projectName: string;
   }): Promise<Operation>;
+  setBillingAccount(options: {
+    projectId: string;
+    billingAccountId: string;
+  }): Promise<void>
 };

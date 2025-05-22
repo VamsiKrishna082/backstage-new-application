@@ -40,11 +40,16 @@ import { gcpApiRef } from '../../api';
 import { useRouteRef } from '@backstage/core-plugin-api';
 import { rootRouteRef } from '../../routes';
 import { useAsync } from '@react-hookz/web';
+import { useEffect } from 'react'; 
 
 export const Project = () => {
   const [projectName, setProjectName] = useState('');
   const [projectId, setProjectId] = useState('');
   const [disabled, setDisabled] = useState(true);
+  const [billingStatus, setBillingStatus] = useState('');
+  const [ , setCustomError] = useState<string | null>(null);
+  const [projectStatus, setProjectStatus] = useState('');
+  const [polling, setPolling] = useState(false);
 
   const api=useApi(gcpApiRef);
 
@@ -56,9 +61,63 @@ export const Project = () => {
     ProjectId: projectId,
   };
 
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+
+    async function assignBilling() {
+      console.log('Please wait: Linking the project to billing account')
+      await api.setBillingAccount({ projectId, billingAccountId: '014578-2C2708-DF0259' });
+      setBillingStatus('Billing account linked successfully.');
+    }
+  
+    if (polling && projectId) {
+      interval = setInterval(async () => {
+        try {
+          const project = await api.getProject(projectId); // use your existing getProject method
+          const lifecycleStatus = project.lifecycleState || ''; // depends on what field GCP returns
+          console.log('Polling status:', status);
+          setProjectStatus(lifecycleStatus);
+  
+          if (lifecycleStatus === 'ACTIVE') {
+            clearInterval(interval);
+            setPolling(false);
+
+            await assignBilling();
+          }
+        } catch (err) {
+          console.error('Polling failed:', err);
+          clearInterval(interval);
+          setPolling(false);
+        }
+      }, 5000); // poll every 5 seconds
+    }
+  
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [polling, projectId]);
+  
+
+  // async function handleClick() {
+  //   console.log({projectName,projectId})
+    
+  //   await execute();
+  // }
+
   async function handleClick() {
-    console.log({projectName,projectId})
-    await execute()
+    setCustomError(null);
+    setProjectStatus('');
+    try {
+      await execute();
+      setPolling(true); // Start polling after successful creation
+    } catch (err: any) {
+      if (err.message.includes('Project ID') && err.message.includes('already')) {
+        setCustomError(`Project ID '${projectId}' is already in use. Please choose another.`);
+      } else {
+        console.error('Unexpected error creating project:', err);
+        setCustomError('Failed to create project. See console for details.');
+      }
+    }
   }
   console.log(status, result, error)
 
@@ -127,6 +186,12 @@ export const Project = () => {
 
             {status === 'loading' && <LinearProgress style={{ marginTop: 20 }} />}
 
+            {/* {customError && (
+              <ErrorPanel title="Error Creating Project" error={error}>
+                {customError}
+              </ErrorPanel>
+            )} */}
+
             {error && (
               <ErrorPanel title="Failed to create project" error={error}>
                 {error.toString()}
@@ -134,10 +199,30 @@ export const Project = () => {
             )}
 
             {status === 'success' && result && (
+              <WarningPanel severity="info" title="Project Creation Started">
+                Project <strong>{projectId}</strong> creation initiated successfully. <br />
+                {polling && <div>Checking project status...</div>}
+              </WarningPanel>
+            )}
+
+            {projectStatus && (
+              <WarningPanel severity="info" title="Project Status">
+                Current GCP project status: <strong>{status}</strong>
+              </WarningPanel>
+            )}
+
+            {billingStatus && (
+              <WarningPanel severity={billingStatus.includes('Failed') ? 'error' : 'info'} title="Billing Status">
+                {billingStatus}
+              </WarningPanel>
+            )}
+
+
+            {/* {status === 'success' && result && (
               <WarningPanel severity="info" title="Project Created">
                 Project <strong>{projectId}</strong> created successfully!
               </WarningPanel>
-            )}
+            )} */}
             {/* <Button
               component={RouterLink}
               variant="text"

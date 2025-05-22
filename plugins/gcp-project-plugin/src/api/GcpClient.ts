@@ -14,6 +14,10 @@
  * limitations under the License.
  */
 
+// import { google } from 'googleapis';
+
+// const serviceUsage = google.serviceusage('v1');
+
 import { GcpApi } from './GcpApi';
 import { Operation, Project } from './types';
 import { OAuthApi } from '@backstage/core-plugin-api';
@@ -82,10 +86,23 @@ export class GcpClient implements GcpApi {
       body: JSON.stringify(newProject),
     });
 
+    console.log('Sending create project request with body:', response.body);
+
     if (!response.ok) {
-      throw new Error(
-        `Create request failed to ${BASE_URL} with ${response.status} ${response.statusText}`,
-      );
+      let errorMessage = `Create request failed to ${BASE_URL} with ${response.status}`;
+  
+      try {
+        const errorBody = await response.json();
+        if (response.status === 409 && errorBody?.error?.status === 'ALREADY_EXISTS') {
+          errorMessage = 'Project ID already exists';
+        } else if (errorBody?.error?.message) {
+          errorMessage = errorBody.error.message;
+        }
+      } catch (e) {
+        // fallback if error response is not JSON
+      }
+  
+      throw new Error(errorMessage);
     }
 
     return await response.json();
@@ -100,4 +117,99 @@ export class GcpClient implements GcpApi {
       'https://www.googleapis.com/auth/cloud-platform',
     );
   }
+
+  async waitForOperation(operationName: string): Promise<void> {
+    const url = `https://cloudresourcemanager.googleapis.com/v1/${operationName}`;
+  
+    while (true) {
+      const response = await fetch(url, {
+        headers: {
+          Authorization: `Bearer ${await this.getToken()}`,
+          'X-Goog-Api-Client': `backstage/gcpprojects/${packageinfo.version}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error(
+          `Polling operation failed at ${url} with ${response.status} ${response.statusText}`,
+        );
+      }
+  
+      const operation = await response.json();
+  
+      if (operation.done) {
+        if (operation.error) {
+          throw new Error(`GCP Operation failed: ${operation.error.message}`);
+        }
+        break;
+      }
+  
+      // Poll every few seconds
+      await new Promise(res => setTimeout(res, 3000));
+    }
+  }
+
+  async setBillingAccount(options: { projectId: string, billingAccountId: string }): Promise<void> {
+
+    await this.enableBillingApi(options.projectId);
+
+    console.log('billing api enabled and starting to wait for 80 sec')
+    // Wait for API enablement to propagate
+    await new Promise(resolve => setTimeout(resolve, 60000));
+
+    console.log('Waited for 80 seconds to activate')
+
+    const url = `https://cloudbilling.googleapis.com/v1/projects/${options.projectId}/billingInfo`;
+    const body = {
+      billingAccountName: `billingAccounts/${options.billingAccountId}`
+      // billingEnabled: true,
+    };
+  
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${await this.getToken()}`,
+        'X-Goog-Api-Client': `backstage/gcpprojects/${packageinfo.version}`,
+      },
+      body: JSON.stringify(body),
+    });
+  
+    if (!response.ok) {
+      const errorBody = await response.json().catch(() => ({}));
+      let errorMessage = `Failed to set billing account with status ${response.status}`;
+      if (errorBody?.error?.message) {
+        errorMessage = errorBody.error.message;
+      }
+      throw new Error(errorMessage);
+    }
+  }
+  
+  async enableBillingApi(projectId: string): Promise<void> {
+    const url = `https://serviceusage.googleapis.com/v1/projects/${projectId}/services/cloudbilling.googleapis.com:enable`;
+  
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${await this.getToken()}`,
+        'Content-Type': 'application/json',
+        'X-Goog-Api-Client': `backstage/gcpprojects/${packageinfo.version}`,
+      },
+    });
+    
+    console.log("billing api enabled");
+
+    if (!response.ok) {
+      const errorBody = await response.json().catch(() => ({}));
+      let errorMessage = `Failed to enable Cloud Billing API with status ${response.status}`;
+      if (errorBody?.error?.message) {
+        errorMessage = errorBody.error.message;
+      }
+      throw new Error(errorMessage);
+    }
+  }
+  
+  
+  
+  
 }

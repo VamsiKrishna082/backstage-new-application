@@ -5,9 +5,9 @@ steps:
       - '-c'
       - |
         DOCKER_BUILDKIT=1 docker build --progress=plain \
-        -t us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage:2.6.0 \
+        -t us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage:2.7.0 \
         -t us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage:latest .
 
 images:
-  - 'us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage:2.6.0'
+  - 'us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage:2.7.0'
   - 'us-central1-docker.pkg.dev/vamsi-krishna-sandbox/backstage/backstage:latest'

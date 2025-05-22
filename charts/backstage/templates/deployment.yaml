@@ -90,4 +90,29 @@ spec:
                 secretKeyRef:
                   name: {{ .Values.secrets.techdocs_gcs_bucket.name }}
                   key: {{ .Values.secrets.techdocs_gcs_bucket.key }}
+            - name: GITHUB_APP_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_app_id.name }}
+                  key: {{ .Values.secrets.github_app_id.key }}
+            - name: GITHUB_APP_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_app_client_id.name }}
+                  key: {{ .Values.secrets.github_app_client_id.key }}
+            - name: GITHUB_APP_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_app_client_secret.name }}
+                  key: {{ .Values.secrets.github_app_client_secret.key }}
+            - name: GITHUB_APP_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_app_private_key.name }}
+                  key: {{ .Values.secrets.github_app_private_key.key }}
+            - name: GITHUB_APP_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.secrets.github_app_webhook_secret.name }}
+                  key: {{ .Values.secrets.github_app_webhook_secret.key }}
             
